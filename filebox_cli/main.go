@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/Shulammite-Aso/filebox-cli/auth"
+	"github.com/Shulammite-Aso/filebox-cli/box"
 )
 
 const (
@@ -29,28 +30,29 @@ func main() {
 		case Login:
 			auth.Login()
 		case SendFile:
-			fmt.Println("send file")
+			box.SendFile()
 		case UpdateFile:
-			fmt.Println("update file")
+			box.UpdateFile()
 		case GetFile:
-			fmt.Println("get file")
+			box.GetFile()
 		case GetListOfAllFiles:
-			fmt.Println("get file")
+			box.GetListOfAllFiles()
 		case DeleteFile:
-			fmt.Println("get file")
+			box.DeleteFile()
 		case SendFileToPerson:
-			fmt.Println("get file")
+			box.SendFileToPerson()
 		default:
 			fmt.Println("Please only enter a number from the options")
-			os.Exit(2)
+			os.Exit(1)
 		}
 	}
 
+	// Authenticate
 	fmt.Println("What do you want to do? Choose the number and press enter\n(1) Register\n(2) Login")
 	fmt.Scanln(&action)
-
 	actionCaller()
 
+	// After authentication, proceed with other actions
 	fmt.Println("What do you want to do? Choose the number and press enter")
 	fmt.Println("(3) Send file to my box")
 	fmt.Println("(4) Replace a file")
@@ -59,6 +61,5 @@ func main() {
 	fmt.Println("(7) Delete a file")
 	fmt.Println("(8) Send file to someone else")
 	fmt.Scanln(&action)
-
 	actionCaller()
 }

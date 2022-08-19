@@ -42,7 +42,7 @@ func Register() {
 		log.Fatal(err)
 	}
 
-	resp, err := http.Post("/auth/register", "application/json",
+	resp, err := http.Post("https://3000-shulammitea-fileboxauth-o84h57cmzok.ws-eu60.gitpod.io/auth/register", "application/json",
 		bytes.NewBuffer(json_data))
 
 	if err != nil {
