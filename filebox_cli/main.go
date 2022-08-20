@@ -1,11 +1,14 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 
 	"github.com/Shulammite-Aso/filebox-cli/auth"
 	"github.com/Shulammite-Aso/filebox-cli/box"
+	"github.com/Shulammite-Aso/filebox-cli/util"
 )
 
 const (
@@ -22,6 +25,7 @@ const (
 func main() {
 
 	var action int
+	scanner := bufio.NewScanner(os.Stdin)
 
 	actionCaller := func() {
 		switch action {
@@ -49,7 +53,13 @@ func main() {
 
 	// Authenticate
 	fmt.Println("What do you want to do? Choose the number and press enter\n(1) Register\n(2) Login")
-	fmt.Scanln(&action)
+	scanner.Scan()
+	action, err := strconv.Atoi(scanner.Text())
+
+	if err != nil {
+		util.HandleError(err)
+	}
+
 	actionCaller()
 
 	// After authentication, proceed with other actions
@@ -60,6 +70,12 @@ func main() {
 	fmt.Println("(6) Get list of all files in my box")
 	fmt.Println("(7) Delete a file")
 	fmt.Println("(8) Send file to someone else")
-	fmt.Scanln(&action)
+	scanner.Scan()
+	action, err = strconv.Atoi(scanner.Text())
+
+	if err != nil {
+		util.HandleError(err)
+	}
+
 	actionCaller()
 }

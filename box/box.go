@@ -14,8 +14,8 @@ import (
 )
 
 var (
-	host          = "https://3000-shulammitea-fileboxauth-o84h57cmzok.ws-eu60.gitpod.io"
-	authorization = &auth.Token
+	host          = "http://localhost:3000"
+	authorization *string
 )
 
 func SendFile() {
@@ -45,6 +45,8 @@ func SendFile() {
 	if err != nil {
 		util.HandleError(err)
 	}
+
+	authorization = &auth.Token
 
 	request, err := http.NewRequest("POST", host+"/filebox/sendfile", bytes.NewBuffer(json_data))
 
@@ -83,7 +85,9 @@ func GetFile() {
 
 	fmt.Println("please wait...")
 
-	request, err := http.NewRequest("GET", host+"/filebox/getfile?fileName="+fileName, nil)
+	authorization = &auth.Token
+
+	request, err := http.NewRequest("GET", host+"/filebox/getfile/"+fileName, nil)
 
 	if err != nil {
 		util.HandleError(err)
@@ -148,6 +152,8 @@ func UpdateFile() {
 		util.HandleError(err)
 	}
 
+	authorization = &auth.Token
+
 	request, err := http.NewRequest("PUT", host+"/filebox/updatefile", bytes.NewBuffer(json_data))
 
 	if err != nil {
@@ -180,6 +186,8 @@ func GetListOfAllFiles() {
 
 	fmt.Println("please wait...")
 
+	authorization = &auth.Token
+
 	request, err := http.NewRequest("GET", host+"/filebox/get-list-of-all-files", nil)
 
 	if err != nil {
@@ -195,15 +203,11 @@ func GetListOfAllFiles() {
 	}
 	defer response.Body.Close()
 
-	var res map[string]interface{}
+	var res map[string][]string
 
 	json.NewDecoder(response.Body).Decode(&res)
 
-	if res["error"] != "" {
-		util.HandleError(errors.New(res["error"].(string)))
-	}
-
-	allFiles := res["allFiles"].([]string)
+	allFiles := res["allFiles"]
 
 	for _, file := range allFiles {
 		fmt.Println(file)
@@ -243,6 +247,8 @@ func SendFileToPerson() {
 		util.HandleError(err)
 	}
 
+	authorization = &auth.Token
+
 	request, err := http.NewRequest("POST", host+"/filebox/sendfile-to-person", bytes.NewBuffer(json_data))
 
 	if err != nil {
@@ -279,6 +285,8 @@ func DeleteFile() {
 	fmt.Scanln(&fileName)
 
 	fmt.Println("please wait...")
+
+	authorization = &auth.Token
 
 	request, err := http.NewRequest("DELETE", host+"/filebox/deletefile?fileName="+fileName, nil)
 
