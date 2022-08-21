@@ -55,7 +55,7 @@ func SendFile() {
 	}
 
 	request.Header.Set("Content-Type", "application/json; charset=UTF-8")
-	request.Header.Set("authorization", *authorization)
+	request.Header.Set("authorization", "Bearer "+*authorization)
 
 	client := &http.Client{}
 	response, err := client.Do(request)
@@ -93,7 +93,7 @@ func GetFile() {
 		util.HandleError(err)
 	}
 
-	request.Header.Set("authorization", *authorization)
+	request.Header.Set("authorization", "Bearer "+*authorization)
 
 	client := &http.Client{}
 	response, err := client.Do(request)
@@ -161,7 +161,7 @@ func UpdateFile() {
 	}
 
 	request.Header.Set("Content-Type", "application/json; charset=UTF-8")
-	request.Header.Set("authorization", *authorization)
+	request.Header.Set("authorization", "Bearer "+*authorization)
 
 	client := &http.Client{}
 	response, err := client.Do(request)
@@ -194,7 +194,7 @@ func GetListOfAllFiles() {
 		util.HandleError(err)
 	}
 
-	request.Header.Set("authorization", *authorization)
+	request.Header.Set("authorization", "Bearer "+*authorization)
 
 	client := &http.Client{}
 	response, err := client.Do(request)
@@ -256,7 +256,7 @@ func SendFileToPerson() {
 	}
 
 	request.Header.Set("Content-Type", "application/json; charset=UTF-8")
-	request.Header.Set("authorization", *authorization)
+	request.Header.Set("authorization", "Bearer "+*authorization)
 
 	client := &http.Client{}
 	response, err := client.Do(request)
@@ -294,7 +294,7 @@ func DeleteFile() {
 		util.HandleError(err)
 	}
 
-	request.Header.Set("authorization", *authorization)
+	request.Header.Set("authorization", "Bearer "+*authorization)
 
 	client := &http.Client{}
 	response, err := client.Do(request)
