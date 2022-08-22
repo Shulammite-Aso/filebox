@@ -240,7 +240,7 @@ func SendFileToPerson() {
 
 	fileName := filepath.Base(path)
 
-	values := map[string]interface{}{"receiverUsername": receiverUsername, "fileName": fileName, "file": data}
+	values := map[string]interface{}{"fileName": fileName, "file": data, "receiverUsername": receiverUsername}
 	json_data, err := json.Marshal(values)
 
 	if err != nil {
@@ -288,7 +288,7 @@ func DeleteFile() {
 
 	authorization = &auth.Token
 
-	request, err := http.NewRequest("DELETE", host+"/filebox/deletefile?fileName="+fileName, nil)
+	request, err := http.NewRequest("DELETE", host+"/filebox/deletefile/"+fileName, nil)
 
 	if err != nil {
 		util.HandleError(err)

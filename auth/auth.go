@@ -19,7 +19,7 @@ func Register() {
 	var ComfirmPassword string
 
 	fmt.Println("Enter email:")
-	fmt.Scanln(&username)
+	fmt.Scanln(&email)
 
 	fmt.Println("Enter username:")
 	fmt.Scanln(&username)
