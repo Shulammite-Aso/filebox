@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filebox-service
+spec:
+  selector:
+    matchLabels:
+      app: filebox-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: filebox-service
+    spec:
+      containers:
+        - name: filebox-service
+          image: shulaa/filebox-service:v1
+          ports:
+            - containerPort: 50052
+              name: fb-service-port

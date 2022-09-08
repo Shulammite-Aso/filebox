@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: filebox-api-gateway-service
+spec:
+  selector:
+    app: filebox-api-gateway
+  type: NodePort
+  ports:
+    - name: gateway-svc
+      protocol: TCP
+      port: 3000
+      targetPort: fb-api-gateway-port
+      nodePort: 31000

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filebox-api-gateway
+spec:
+  selector:
+    matchLabels:
+      app: filebox-api-gateway
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: filebox-api-gateway
+    spec:
+      containers:
+        - name: filebox-api-gateway
+          image: shulaa/filebox-api-gateway:v1
+          ports:
+            - containerPort: 3000
+              name: fb-api-gateway-port
