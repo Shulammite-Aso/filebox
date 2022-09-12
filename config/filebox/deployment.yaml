@@ -17,4 +17,4 @@ spec:
           image: shulaa/filebox-service:v1
           ports:
             - containerPort: 50052
-              name: fb-service-port
+              name: fb-svc-port
