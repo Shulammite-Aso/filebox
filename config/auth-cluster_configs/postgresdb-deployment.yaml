@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: auth-postgres-db
+spec:
+ strategy:
+   rollingUpdate:
+     maxSurge: 1
+     maxUnavailable: 1
+   type: RollingUpdate
+ replicas: 1
+ selector:
+   matchLabels:
+     app: auth-postgres-db
+ template:
+   metadata:
+     labels:
+       app: auth-postgres-db
+   spec:
+     containers:
+       - name: auth-postgres-db
+         image: postgres
+         resources:
+           limits:
+             cpu: "1"
+             memory: "4Gi"
+           requests:
+             cpu: "1"
+             memory: "4Gi"
+         ports:
+           - containerPort: 5432
+             name: "db-port"
+         env:
+           - name: POSTGRES_DB
+             value: auth_svc
+           - name: POSTGRES_USER
+             value: postgresUser
+           - name: POSTGRES_PASSWORD
+             value: postgresPW
+           - name: PGDATA
+             value: /var/lib/postgresql/data/pgdata
+         volumeMounts:
+           - mountPath: /var/lib/postgresql/data
+             name: postgredb
+     volumes:
+       - name: postgredb
+         persistentVolumeClaim:
+           claimName: postgresql-pv
