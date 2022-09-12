@@ -1,0 +1,5 @@
+## Creating a cluster with kubeadm
+
+Using kubeadm, you can create a minimum viable Kubernetes cluster that conforms to best practices. 
+In fact, you can use kubeadm to set up a cluster that will pass the Kubernetes Conformance tests. 
+kubeadm also supports other cluster lifecycle functions, such as bootstrap tokens and cluster upgrades.
