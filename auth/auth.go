@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	host  = "http://34.72.244.219:3000/"
+	host  = "http://34.72.244.219:3000"
 	Token string
 )
 
@@ -106,8 +106,6 @@ func Login() {
 
 	Token = res["token"]
 
-	////
-	fmt.Println(Token)
 	fmt.Println("login successful")
 
 }

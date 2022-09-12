@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	host          = "http://34.72.244.219:3000/"
+	host          = "http://34.72.244.219:3000"
 	authorization *string
 )
 
