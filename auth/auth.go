@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	host  = "https://34.125.115.165:31000"
+	host  = "http://34.72.244.219:3000/"
 	Token string
 )
 
