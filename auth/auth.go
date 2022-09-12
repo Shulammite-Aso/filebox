@@ -9,7 +9,10 @@ import (
 	"os"
 )
 
-var Token string
+var (
+	host  = "https://34.125.115.165:31000"
+	Token string
+)
 
 func Register() {
 
@@ -42,7 +45,7 @@ func Register() {
 		log.Fatal(err)
 	}
 
-	resp, err := http.Post("http://localhost:3000/auth/register", "application/json",
+	resp, err := http.Post(host+"/auth/register", "application/json",
 		bytes.NewBuffer(json_data))
 
 	if err != nil {
@@ -85,7 +88,7 @@ func Login() {
 		log.Fatal(err)
 	}
 
-	resp, err := http.Post("http://localhost:3000/auth/login", "application/json",
+	resp, err := http.Post(host+"/auth/login", "application/json",
 		bytes.NewBuffer(json_data))
 
 	if err != nil {
